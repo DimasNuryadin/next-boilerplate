@@ -7,11 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
     "prepare": "husky",
     "test": "jest",
     "test:watch": "jest --watch",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "generate:api": "openapi-typescript src/services/openapi.json -o src/types/api.ts"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
