@@ -1,12 +1,16 @@
-import { themeAtom } from "@/store/atoms/ui";
-import { useAtom } from "jotai";
+import { useTheme as useNextTheme } from "next-themes";
 
 export function useTheme() {
-  const [theme, setTheme] = useAtom(themeAtom);
+  const { theme, setTheme, resolvedTheme } = useNextTheme();
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
   };
 
-  return { theme, toggleTheme, isDark: theme === "dark" };
+  return {
+    theme,
+    resolvedTheme,
+    toggleTheme,
+    isDark: resolvedTheme === "dark",
+  };
 }
