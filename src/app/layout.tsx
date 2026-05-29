@@ -24,11 +24,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
+          {/* Animated gradient blobs */}
           <div className="gradient-blob gradient-blob-1" />
           <div className="gradient-blob gradient-blob-2" />
+          <div className="gradient-blob gradient-blob-3" />
+
           <div className="flex flex-col min-h-screen">
             <Navbar />
-            <main className="flex-1 pt-24">{children}</main>
+            <main className="flex-1 pt-20">{children}</main>
             <Footer />
           </div>
         </Providers>

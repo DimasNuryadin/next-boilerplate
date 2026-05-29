@@ -14,7 +14,7 @@ export function middleware(request: NextRequest) {
   const isAuthRoute = authRoutes.some((route) => pathname.startsWith(route));
 
   // Placeholder — nanti diganti dengan session check dari NextAuth
-  const isAuthenticated = true;
+  const isAuthenticated = false;
 
   if (isProtectedRoute && !isAuthenticated) {
     return NextResponse.redirect(new URL("/login", request.url));
