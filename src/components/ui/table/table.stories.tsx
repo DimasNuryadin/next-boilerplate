@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { Badge } from "./badge";
+import { Badge } from "../badge/badge";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "./table";
 
 const meta: Meta<typeof Table> = {

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { Label } from "../label/label";
 import { Checkbox } from "./checkbox";
-import { Label } from "./label";
 
 const meta: Meta<typeof Checkbox> = {
   title: "UI/Checkbox",

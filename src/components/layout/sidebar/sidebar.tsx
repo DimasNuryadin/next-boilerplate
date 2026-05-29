@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button/button";
 import { cn } from "@/lib/utils";
 import { sidebarOpenAtom } from "@/store/atoms/ui";
 import { useAtom } from "jotai";
