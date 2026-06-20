@@ -31,7 +31,7 @@ export function Sidebar() {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed top-[76px] left-4 z-40 h-[calc(100vh-6rem)] w-60 rounded-2xl",
+          "fixed top-4 left-4 z-40 h-[calc(100vh-2rem)] w-60 rounded-2xl",
           "glass-sidebar",
           "transition-all duration-300 cubic-bezier(0.4, 0, 0.2, 1)",
           "md:translate-x-0",
@@ -64,8 +64,8 @@ export function Sidebar() {
                 className={cn(
                   "flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all duration-200",
                   isActive
-                    ? "glass-strong gradient-text font-medium sidebar-active-indicator"
-                    : "text-muted-foreground hover:text-foreground hover:bg-white/10"
+                    ? "glass-strong text-foreground font-semibold sidebar-active-indicator"
+                    : "text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/10"
                 )}
               >
                 <Icon className="h-4 w-4 shrink-0" />

@@ -87,28 +87,26 @@
   --gradient-to: #2563eb;
   --gradient-accent: #06b6d4;
   --gradient: linear-gradient(135deg, var(--gradient-from), var(--gradient-to));
-  --gradient-vibrant: linear-gradient(
-    135deg,
-    var(--gradient-from),
-    var(--gradient-to),
-    var(--gradient-accent)
-  );
+  --gradient-vibrant: linear-gradient(135deg,
+      var(--gradient-from),
+      var(--gradient-to),
+      var(--gradient-accent));
 
   /* Glass effect — liquid glass tuning */
-  --glass-bg: rgba(255, 255, 255, 0.18);
-  --glass-bg-hover: rgba(255, 255, 255, 0.28);
-  --glass-border: rgba(255, 255, 255, 0.25);
-  --glass-border-hover: rgba(255, 255, 255, 0.4);
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-bg-hover: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-border-hover: rgba(255, 255, 255, 0.9);
   --glass-blur: 16px;
   --glass-blur-strong: 24px;
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  --glass-shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.12);
+  --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.07);
+  --glass-shadow-elevated: 0 16px 48px rgba(31, 38, 135, 0.1);
   --glass-glow: 0 0 40px rgba(124, 58, 237, 0.08);
 
   /* Background */
-  --bg-primary: #f8f7ff;
-  --bg-secondary: #ede9fe;
-  --bg-gradient: linear-gradient(135deg, #ede9fe 0%, #dbeafe 50%, #f0e7fe 100%);
+  --bg-primary: #f5f3ff;
+  --bg-secondary: #e0e7ff;
+  --bg-gradient: linear-gradient(135deg, #f5f3ff 0%, #e0e7ff 50%, #f3e8ff 100%);
 }
 
 .dark {
@@ -210,8 +208,7 @@ body {
 .glass {
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur)) saturate(180%) brightness(1.1);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%)
-    brightness(1.1);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%) brightness(1.1);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -221,14 +218,14 @@ body {
   background: var(--glass-bg-hover);
   border-color: var(--glass-border-hover);
   box-shadow: var(--glass-shadow-elevated);
+  color: var(--foreground);
 }
 
 /* Glass card */
 .glass-card {
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur)) saturate(180%) brightness(1.1);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%)
-    brightness(1.1);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%) brightness(1.1);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow), var(--glass-glow);
   border-radius: 20px;
@@ -241,15 +238,14 @@ body {
   border-color: var(--glass-border-hover);
   box-shadow: var(--glass-shadow-elevated), var(--glass-glow);
   transform: translateY(-2px);
+  color: var(--foreground);
 }
 
 /* Glass strong — more opaque */
 .glass-strong {
   background: rgba(255, 255, 255, 0.28);
-  backdrop-filter: blur(var(--glass-blur-strong)) saturate(200%)
-    brightness(1.15);
-  -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(200%)
-    brightness(1.15);
+  backdrop-filter: blur(var(--glass-blur-strong)) saturate(200%) brightness(1.15);
+  -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(200%) brightness(1.15);
   border: 1px solid rgba(255, 255, 255, 0.35);
   box-shadow: var(--glass-shadow-elevated);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -307,10 +303,8 @@ body {
 /* Footer-specific glass */
 .glass-footer {
   background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur-strong)) saturate(180%)
-    brightness(1.05);
-  -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(180%)
-    brightness(1.05);
+  backdrop-filter: blur(var(--glass-blur-strong)) saturate(180%) brightness(1.05);
+  -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(180%) brightness(1.05);
   border: 1px solid var(--glass-border);
   box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.06);
   position: relative;
@@ -331,10 +325,8 @@ body {
 /* Sidebar-specific glass */
 .glass-sidebar {
   background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur-strong)) saturate(180%)
-    brightness(1.08);
-  -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(180%)
-    brightness(1.08);
+  backdrop-filter: blur(var(--glass-blur-strong)) saturate(180%) brightness(1.08);
+  -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(180%) brightness(1.08);
   border-right: 1px solid var(--glass-border);
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.06);
 }
@@ -356,6 +348,7 @@ body {
   background: var(--glass-bg-hover);
   border-color: var(--glass-border-hover);
   transform: translateY(-1px);
+  color: var(--foreground);
 }
 
 /* ============================================
@@ -384,11 +377,9 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.2),
-    transparent 50%
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.2),
+      transparent 50%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -473,58 +464,58 @@ body {
    KEYFRAME ANIMATIONS
    ============================================ */
 @keyframes float-1 {
+
   0%,
   100% {
     transform: translate(0, 0) scale(1);
   }
+
   25% {
     transform: translate(60px, 40px) scale(1.05);
   }
+
   50% {
     transform: translate(30px, 80px) scale(0.95);
   }
+
   75% {
     transform: translate(-30px, 40px) scale(1.02);
   }
 }
 
 @keyframes float-2 {
+
   0%,
   100% {
     transform: translate(0, 0) scale(1);
   }
+
   25% {
     transform: translate(-50px, -30px) scale(1.03);
   }
+
   50% {
     transform: translate(-80px, -60px) scale(0.97);
   }
+
   75% {
     transform: translate(-30px, -20px) scale(1.04);
   }
 }
 
 @keyframes float-3 {
+
   0%,
   100% {
     transform: translate(0, 0) scale(1);
   }
+
   33% {
     transform: translate(40px, -50px) scale(1.06);
   }
+
   66% {
     transform: translate(-40px, 30px) scale(0.94);
-  }
-}
-
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -532,50 +523,30 @@ body {
   0% {
     background-position: -200% center;
   }
+
   100% {
     background-position: 200% center;
   }
 }
 
 @keyframes pulse-glow {
+
   0%,
   100% {
     box-shadow: 0 0 20px rgba(124, 58, 237, 0.15);
   }
+
   50% {
     box-shadow: 0 0 40px rgba(124, 58, 237, 0.3);
   }
 }
 
-/* Staggered fade-in animation utility */
-.animate-fade-in-up {
-  animation: fade-in-up 0.6s ease-out both;
-}
-
-.animate-delay-1 {
-  animation-delay: 0.1s;
-}
-.animate-delay-2 {
-  animation-delay: 0.2s;
-}
-.animate-delay-3 {
-  animation-delay: 0.3s;
-}
-.animate-delay-4 {
-  animation-delay: 0.4s;
-}
-.animate-delay-5 {
-  animation-delay: 0.5s;
-}
-
 /* Shimmer effect */
 .shimmer {
-  background: linear-gradient(
-    90deg,
-    transparent 25%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 75%
-  );
+  background: linear-gradient(90deg,
+      transparent 25%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 75%);
   background-size: 200% 100%;
   animation: shimmer 3s ease-in-out infinite;
 }
@@ -630,7 +601,53 @@ body {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
+}
+
+/* ============================================
+   BACKGROUND GRID
+   ============================================ */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(124, 58, 237, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(124, 58, 237, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+}
+
+.dark .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* ============================================
+   MARQUEE ANIMATION
+   ============================================ */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.mask-edges {
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
 }

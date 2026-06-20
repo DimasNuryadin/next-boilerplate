@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import { ClientWrapper } from "@/components/layout/client-wrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,11 +30,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="gradient-blob gradient-blob-2" />
           <div className="gradient-blob gradient-blob-3" />
 
-          <div className="flex flex-col min-h-screen">
-            <Navbar />
-            <main className="flex-1 pt-20">{children}</main>
-            <Footer />
-          </div>
+          <ClientWrapper>
+            {children}
+          </ClientWrapper>
         </Providers>
       </body>
     </html>

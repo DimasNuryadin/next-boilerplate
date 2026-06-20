@@ -8,6 +8,8 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { motion, AnimatePresence } from "motion/react";
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -70,43 +72,45 @@ export function Navbar() {
         </div>
 
         {/* Mobile Menu */}
-        {mobileOpen && (
-          <>
-            {/* Overlay */}
-            <div className="fixed inset-0 z-40 bg-black/30 overlay-fade md:hidden" onClick={() => setMobileOpen(false)} />
+        <AnimatePresence>
+          {mobileOpen && (
+            <>
+              {/* Overlay */}
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }} className="fixed inset-0 z-40 bg-black/30 md:hidden" onClick={() => setMobileOpen(false)} />
 
-            {/* Menu Panel */}
-            <div className="fixed top-[72px] left-4 right-4 z-50 glass-card animate-fade-in-up md:hidden">
-              <div className="flex flex-col gap-1">
-                {mainNavigation.map((item) => (
-                  <Link key={item.href} href={item.href} className="text-sm text-muted-foreground hover:text-foreground px-4 py-3 rounded-xl hover:bg-white/10 transition-all" onClick={() => setMobileOpen(false)}>
-                    {item.label}
-                  </Link>
-                ))}
+              {/* Menu Panel */}
+              <motion.div initial={{ opacity: 0, y: -20, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -20, scale: 0.95 }} transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] as const }} className="fixed top-[72px] left-4 right-4 z-50 glass-card md:hidden backdrop-blur-xl">
+                <div className="flex flex-col gap-1">
+                  {mainNavigation.map((item) => (
+                    <Link key={item.href} href={item.href} className="text-sm text-muted-foreground hover:text-foreground px-4 py-3 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 transition-all" onClick={() => setMobileOpen(false)}>
+                      {item.label}
+                    </Link>
+                  ))}
 
-                <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent my-2" />
+                  <div className="h-px bg-linear-gradient-to-r from-transparent via-black/20 dark:via-white/20 to-transparent my-2" />
 
-                <div className="flex flex-col gap-2 px-4 pb-2">
-                  {authNavigation.map((item) =>
-                    item.label === "Login" ? (
-                      <Button key={item.href} variant="ghost" size="sm" asChild className="w-full justify-center">
-                        <Link href={item.href} onClick={() => setMobileOpen(false)}>
-                          {item.label}
-                        </Link>
-                      </Button>
-                    ) : (
-                      <Button key={item.href} variant="gradient" size="sm" asChild className="w-full justify-center">
-                        <Link href={item.href} onClick={() => setMobileOpen(false)}>
-                          {item.label}
-                        </Link>
-                      </Button>
-                    )
-                  )}
+                  <div className="flex flex-col gap-2 px-4 pb-2">
+                    {authNavigation.map((item) =>
+                      item.label === "Login" ? (
+                        <Button key={item.href} variant="ghost" size="sm" asChild className="w-full justify-center">
+                          <Link href={item.href} onClick={() => setMobileOpen(false)}>
+                            {item.label}
+                          </Link>
+                        </Button>
+                      ) : (
+                        <Button key={item.href} variant="gradient" size="sm" asChild className="w-full justify-center">
+                          <Link href={item.href} onClick={() => setMobileOpen(false)}>
+                            {item.label}
+                          </Link>
+                        </Button>
+                      )
+                    )}
+                  </div>
                 </div>
-              </div>
-            </div>
-          </>
-        )}
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       </nav>
     </>
   );

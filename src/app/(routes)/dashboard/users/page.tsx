@@ -22,7 +22,7 @@ export default function UsersPage() {
       {/* Search */}
       <div className="relative max-w-sm">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input placeholder="Search users..." className="glass border-white/20 pl-9" value={search} onChange={(e) => setSearch(e.target.value)} />
+        <Input placeholder="Search users..." className="glass border-black/20 dark:border-white/20 pl-9" value={search} onChange={(e) => setSearch(e.target.value)} />
       </div>
 
       {/* Table */}
@@ -30,7 +30,7 @@ export default function UsersPage() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-white/10">
+              <tr className="border-b border-black/10 dark:border-white/10">
                 <th className="text-left px-6 py-4 text-sm font-medium text-muted-foreground">Name</th>
                 <th className="text-left px-6 py-4 text-sm font-medium text-muted-foreground">Email</th>
                 <th className="text-left px-6 py-4 text-sm font-medium text-muted-foreground">Username</th>
@@ -41,7 +41,7 @@ export default function UsersPage() {
             <tbody>
               {isLoading ? (
                 Array.from({ length: 5 }).map((_, i) => (
-                  <tr key={i} className="border-b border-white/10">
+                  <tr key={i} className="border-b border-black/10 dark:border-white/10">
                     {Array.from({ length: 5 }).map((_, j) => (
                       <td key={j} className="px-6 py-4">
                         <Skeleton className="h-4 w-full" />
@@ -57,7 +57,7 @@ export default function UsersPage() {
                 </tr>
               ) : (
                 filtered?.map((user) => (
-                  <tr key={user.id} className="border-b border-white/10 hover:glass transition-all">
+                  <tr key={user.id} className="border-b border-black/10 dark:border-white/10 hover:glass transition-all">
                     <td className="px-6 py-4">
                       <p className="text-sm font-medium">{user.name}</p>
                     </td>

@@ -3,9 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { loginSchema, type LoginSchema } from "@/lib/validations";
+import { registerSchema, type RegisterSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Eye, EyeOff, Lock, Mail } from "lucide-react";
+import { Eye, EyeOff, Lock, Mail, User } from "lucide-react";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -29,20 +30,19 @@ function GithubIcon({ className }: { className?: string }) {
   );
 }
 
-import { motion } from "motion/react";
-
-export function LoginForm() {
+export function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<LoginSchema>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<RegisterSchema>({
+    resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = async (values: LoginSchema) => {
+  const onSubmit = async (values: RegisterSchema) => {
     console.log(values);
   };
 
@@ -51,38 +51,49 @@ export function LoginForm() {
       <Card variant="glass" className="w-full h-full">
         {/* Header */}
         <CardHeader className="text-center space-y-2 pb-2">
-          {/* Lock icon */}
+          {/* User icon */}
           <div className="mx-auto mb-2 glass-pill rounded-2xl! p-3! w-fit">
-            <Lock className="h-6 w-6 gradient-text" />
+            <User className="h-6 w-6 gradient-text" />
           </div>
-          <CardTitle className="text-2xl sm:text-3xl font-bold gradient-text">Welcome back</CardTitle>
-          <CardDescription>Sign in to your account to continue</CardDescription>
+          <CardTitle className="text-2xl sm:text-3xl font-bold gradient-text">Create account</CardTitle>
+          <CardDescription>Sign up to get started today</CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-5">
           {/* Form */}
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {/* Full Name */}
+            <div className="space-y-2">
+              <Label htmlFor="register-name">Full Name</Label>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+                <Input id="register-name" type="text" placeholder="John Doe" className="pl-10 h-10 glass border-black/10 dark:border-white/10 focus-visible:border-purple-500/50 focus-visible:ring-purple-500/20 rounded-xl" {...register("name")} />
+              </div>
+              {errors.name && <p className="text-xs text-destructive pl-1">{errors.name.message}</p>}
+            </div>
+
             {/* Email */}
             <div className="space-y-2">
-              <Label htmlFor="login-email">Email</Label>
+              <Label htmlFor="register-email">Email</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-                <Input id="login-email" type="email" placeholder="email@example.com" className="pl-10 h-10 glass border-black/10 dark:border-white/10 focus-visible:border-purple-500/50 focus-visible:ring-purple-500/20 rounded-xl" {...register("email")} />
+                <Input id="register-email" type="email" placeholder="email@example.com" className="pl-10 h-10 glass border-black/10 dark:border-white/10 focus-visible:border-purple-500/50 focus-visible:ring-purple-500/20 rounded-xl" {...register("email")} />
               </div>
               {errors.email && <p className="text-xs text-destructive pl-1">{errors.email.message}</p>}
             </div>
 
             {/* Password */}
             <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="login-password">Password</Label>
-                <Link href="/forgot-password" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
-                  Forgot password?
-                </Link>
-              </div>
+              <Label htmlFor="register-password">Password</Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-                <Input id="login-password" type={showPassword ? "text" : "password"} placeholder="••••••••" className="pl-10 pr-10 h-10 glass border-black/10 dark:border-white/10 focus-visible:border-purple-500/50 focus-visible:ring-purple-500/20 rounded-xl" {...register("password")} />
+                <Input
+                  id="register-password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="••••••••"
+                  className="pl-10 pr-10 h-10 glass border-black/10 dark:border-white/10 focus-visible:border-purple-500/50 focus-visible:ring-purple-500/20 rounded-xl"
+                  {...register("password")}
+                />
                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors" tabIndex={-1}>
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
@@ -90,9 +101,28 @@ export function LoginForm() {
               {errors.password && <p className="text-xs text-destructive pl-1">{errors.password.message}</p>}
             </div>
 
+            {/* Confirm Password */}
+            <div className="space-y-2">
+              <Label htmlFor="register-confirmPassword">Confirm Password</Label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+                <Input
+                  id="register-confirmPassword"
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="••••••••"
+                  className="pl-10 pr-10 h-10 glass border-black/10 dark:border-white/10 focus-visible:border-purple-500/50 focus-visible:ring-purple-500/20 rounded-xl"
+                  {...register("confirmPassword")}
+                />
+                <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors" tabIndex={-1}>
+                  {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
+              {errors.confirmPassword && <p className="text-xs text-destructive pl-1">{errors.confirmPassword.message}</p>}
+            </div>
+
             {/* Submit */}
-            <Button type="submit" variant="gradient" className="w-full h-10 rounded-xl" disabled={isSubmitting}>
-              {isSubmitting ? "Signing in..." : "Sign in"}
+            <Button type="submit" variant="gradient" className="w-full h-10 rounded-xl mt-2" disabled={isSubmitting}>
+              {isSubmitting ? "Creating account..." : "Create account"}
             </Button>
           </form>
 
@@ -120,9 +150,9 @@ export function LoginForm() {
 
           {/* Footer */}
           <p className="text-center text-sm text-muted-foreground pt-1">
-            Don&apos;t have an account?{" "}
-            <Link href="/register" className="gradient-text font-medium hover:opacity-80 transition-opacity">
-              Sign up
+            Already have an account?{" "}
+            <Link href="/login" className="gradient-text font-medium hover:opacity-80 transition-opacity">
+              Sign in
             </Link>
           </p>
         </CardContent>
