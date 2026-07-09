@@ -104,9 +104,9 @@
   --glass-glow: 0 0 40px rgba(124, 58, 237, 0.08);
 
   /* Background */
-  --bg-primary: #f5f3ff;
-  --bg-secondary: #e0e7ff;
-  --bg-gradient: linear-gradient(135deg, #f5f3ff 0%, #e0e7ff 50%, #f3e8ff 100%);
+  --bg-primary: #fafafa;
+  --bg-secondary: #f4f4f5;
+  --bg-gradient: linear-gradient(135deg, #fafafa 0%, #f4f4f5 50%, #ffffff 100%);
 }
 
 .dark {
@@ -426,10 +426,14 @@ body {
   position: fixed;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.25;
+  opacity: 0.08; /* Subtle glow in light mode */
   pointer-events: none;
   z-index: -1;
   will-change: transform;
+}
+
+.dark .gradient-blob {
+  opacity: 0.25; /* Strong in dark mode */
 }
 
 .gradient-blob-1 {
@@ -611,16 +615,16 @@ body {
    BACKGROUND GRID
    ============================================ */
 .bg-grid-pattern {
-  background-image: 
-    linear-gradient(to right, rgba(124, 58, 237, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(124, 58, 237, 0.05) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
   mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
 }
 
 .dark .bg-grid-pattern {
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
@@ -632,6 +636,7 @@ body {
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-50%);
   }

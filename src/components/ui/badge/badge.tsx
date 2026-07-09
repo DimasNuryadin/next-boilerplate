@@ -21,6 +21,8 @@ const badgeVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         glass:
           "glass-pill h-auto text-muted-foreground border-0",
+        premium:
+          "inline-flex items-center gap-2 px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-medium rounded-full bg-black/5 dark:bg-white/5 border border-black/20 dark:border-white/10 text-zinc-700 dark:text-zinc-300",
       },
     },
     defaultVariants: {

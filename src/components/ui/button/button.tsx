@@ -23,6 +23,10 @@ const buttonVariants = cva(
           "glass text-muted-foreground hover:text-foreground rounded-2xl",
         gradient:
           "gradient-btn text-white rounded-2xl border-0",
+        premium:
+          "gradient-btn text-white rounded-full border border-black/10 dark:border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]",
+        "premium-outline":
+          "rounded-full bg-black/5 dark:bg-white/5 border border-black/20 dark:border-white/10 text-zinc-900 dark:text-white shadow-sm hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]",
       },
       size: {
         default:

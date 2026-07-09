@@ -1,7 +1,6 @@
 import { Sidebar } from "@/components/layout";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
-import { Bell, LogOut, User } from "lucide-react";
-import Image from "next/image";
+import { Bell, LogOut } from "lucide-react";
 import Link from "next/link";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

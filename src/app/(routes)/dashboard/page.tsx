@@ -5,41 +5,58 @@ import { mockData } from "./components/mock-data";
 import { ProjectProgress } from "./components/project-progress";
 import { StatCard } from "./components/stat-card";
 import { TrendsChart } from "./components/trends-chart";
-import { Bell, ChevronDown } from "lucide-react";
-import Image from "next/image";
+import { ChevronDown } from "lucide-react";
+import { motion } from "motion/react";
+import { Button } from "@/components/ui/button";
+
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: [0.32, 0.72, 0, 1] as const,
+    },
+  }),
+};
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 max-w-7xl mx-auto pb-10">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <h1 className="text-2xl font-bold">Performance Overview</h1>
+      <motion.div custom={0} initial="hidden" animate="visible" variants={fadeUpVariants} className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 mb-1">Performance Overview</h1>
+          <p className="text-sm text-zinc-500 dark:text-zinc-400">Track your key metrics and project progress.</p>
+        </div>
         
         <div className="flex items-center gap-4">
-          <button className="glass flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+          <Button variant="premium-outline" className="flex items-center gap-2 h-10 px-4 rounded-xl">
             Aug 1–31, 2024
             <ChevronDown className="h-4 w-4 text-muted-foreground" />
-          </button>
+          </Button>
         </div>
-      </div>
+      </motion.div>
 
       {/* Stats Row */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <motion.div custom={1} initial="hidden" animate="visible" variants={fadeUpVariants} className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {mockData.stats.map((stat) => (
           <StatCard key={stat.title} {...stat} />
         ))}
-      </div>
+      </motion.div>
 
       {/* Main Chart */}
-      <div className="h-[380px]">
+      <motion.div custom={2} initial="hidden" animate="visible" variants={fadeUpVariants} className="h-[400px]">
         <TrendsChart data={mockData.trends} />
-      </div>
+      </motion.div>
 
       {/* Bottom Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUpVariants} className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <ProjectProgress projects={mockData.projects} />
         <ActivityFeed activities={mockData.activities} />
-      </div>
+      </motion.div>
     </div>
   );
 }
